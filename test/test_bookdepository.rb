@@ -3,6 +3,10 @@ require_relative 'helper'
 class TestBookdepository < Minitest::Test
   def setup
     VCR.insert_cassette('bookdepository')
+    Bookdepository.configure do |c|
+      c.client_id = '123'
+      c.auth_key = '123'
+    end
     @client = Bookdepository.new
     @options = { 'countryCode' => 'GB' }
   end
