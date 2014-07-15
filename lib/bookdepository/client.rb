@@ -16,17 +16,17 @@ module Bookdepository
       yield Config
     end
 
-    %w(books bestsellers comingsoon lookup).each do |request_type|
-      define_method(request_type) do |options|
-        get(request_type, options)
+    %w(books bestsellers comingsoon lookup).each do |api_request|
+      define_method(api_request) do |options|
+        get(api_request, options)
       end
     end
 
     private
 
-    def get(type, options = {})
+    def get(api_request, options = {})
       res = http.get(
-        path: build_path(type),
+        path: build_path(api_request),
         query: build_params(options)
       )
 
@@ -37,8 +37,8 @@ module Bookdepository
       Excon.new('http://api.bookdepository.com', expects: 200)
     end
 
-    def build_path(type)
-      "/search/#{type}"
+    def build_path(api_request)
+      "/search/#{api_request}"
     end
 
     def build_params(options)
