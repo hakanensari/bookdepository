@@ -1,13 +1,18 @@
+require 'forwardable'
 require 'countries'
 require 'excon'
 require 'bookdepository/config'
 require 'bookdepository/parser'
 
 module Bookdepository
-  class Request
+  class Client
+    extend Forwardable
+
     AVAILABLE_CURRENCIES = %w(USD GBP EUR CAD AUD SGD NZD)
 
-    def self.config
+    def_delegators Config, :auth_key, :client_id
+
+    def self.configure
       yield Config
     end
 
@@ -39,8 +44,8 @@ module Bookdepository
     def build_params(options)
       options
         .merge(
-          'clientId' => Config.client_id,
-          'authenticationKey' => Config.auth_key
+          'clientId' => client_id,
+          'authenticationKey' => auth_key
         )
         .tap { |params|
           if params.has_key?('countryCode')

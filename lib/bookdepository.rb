@@ -1,10 +1,10 @@
 require 'forwardable'
-require 'bookdepository/request'
+require 'bookdepository/client'
 
 module Bookdepository
   class << self
     extend Forwardable
 
-    def_delegators Request, :new, :config
+    def_delegators Client, :new, :configure
   end
 end

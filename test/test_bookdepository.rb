@@ -11,6 +11,13 @@ class TestBookdepository < Minitest::Test
     VCR.eject_cassette
   end
 
+  def test_configure
+    Bookdepository.configure do |c|
+      c.client_id = '123'
+    end
+    assert_equal '123', @client.client_id
+  end
+
   def test_books
     @options.update(
       'keywords' => 'Architecture'
