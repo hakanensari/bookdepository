@@ -13,3 +13,18 @@ VCR.configure do |c|
       VCR.request_matchers.uri_without_param('authenticationKey', 'clientId')]
   }
 end
+
+module Bookdepository
+  class Test < Minitest::Test
+    private
+
+    def use_mock_credentials_if_none_provided
+      return if ENV.has_key?('BOOKDEPOSITORY_CLIENT_ID')
+
+      Bookdepository.configure do |c|
+        c.client_id = '123'
+        c.auth_key = '123'
+      end
+    end
+  end
+end
