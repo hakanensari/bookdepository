@@ -8,7 +8,7 @@ module Bookdepository
   class Client
     extend Forwardable
 
-    AVAILABLE_CURRENCIES = %w(USD GBP EUR CAD AUD SGD NZD)
+    AVAILABLE_CURRENCIES = %w(USD GBP EUR CAD AUD SGD NZD).freeze
 
     def_delegators Config, :auth_key, :client_id
 
@@ -48,7 +48,7 @@ module Bookdepository
           'authenticationKey' => auth_key
         )
         .tap { |params|
-          if params.has_key?('countryCode')
+          if params.key?('countryCode')
             params['IP'] ||= '127.0.0.1'
             params['currencies'] ||= find_currency(params['countryCode'])
           end
