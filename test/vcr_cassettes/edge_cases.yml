@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.bookdepository.com/search/books?IP=127.0.0.1&authenticationKey=e2b393904cc8e97122f614afae6798064e7f01ca&clientId=c2ff10ca&countryCode=GB&currencies=GBP&keywords=B00IE3UR08
+    uri: https://api.bookdepository.com/search/books?IP=127.0.0.1&authenticationKey=e2b393904cc8e97122f614afae6798064e7f01ca&clientId=c2ff10ca&countryCode=GB&currencies=GBP&keywords=B00IE3UR08
     body:
       encoding: US-ASCII
       string: ''
@@ -12,7 +12,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       Server:
       - nginx
@@ -427,6 +427,6 @@ http_interactions:
         b3JfbGluayZhbXA7dXRtX2NvbnRlbnQ9Ui1TdGllcmxpbjwvdXJsPjwvY29u
         dHJpYnV0b3I+PC9jb250cmlidXRvcnM+PC9pdGVtPjwvaXRlbXM+PC9yZXN1
         bHQ+Cg==
-    http_version: 
+    http_version:
   recorded_at: Wed, 16 Jul 2014 14:17:15 GMT
 recorded_with: VCR 2.9.2

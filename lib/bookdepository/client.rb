@@ -9,6 +9,7 @@ module Bookdepository
     extend Forwardable
 
     AVAILABLE_CURRENCIES = %w(USD GBP EUR CAD AUD SGD NZD).freeze
+    BASE_URL = 'https://api.bookdepository.com'.freeze
 
     def_delegators Config, :auth_key, :client_id
 
@@ -34,7 +35,7 @@ module Bookdepository
     end
 
     def http
-      Excon.new('http://api.bookdepository.com', expects: 200)
+      Excon.new(BASE_URL, expects: 200)
     end
 
     def build_path(api_request)
