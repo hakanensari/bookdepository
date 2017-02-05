@@ -56,7 +56,7 @@ module Bookdepository
     end
 
     def find_currency(country_code)
-      currency = Country[country_code].currency_code
+      currency = ISO3166::Country[country_code].currency_code
       currency if AVAILABLE_CURRENCIES.include?(currency)
     end
   end
